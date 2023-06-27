@@ -1,0 +1,30 @@
+---
+name: Call Rsync Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  call-rsync-deploy:
+
+    name: Call Rsync Deploy
+
+    # Call from other repo
+    # uses: geocoug/github-actions-templates/.github/workflows/rsync-deploy.yaml@main
+    # Call from local repo
+    uses: ./.github/workflows/rsync-deploy.yml
+
+    permissions:
+      contents: read
+
+    secrets:
+      host: ${{ secrets.HOST }}
+      username: ${{ secrets.USERNAME }}
+      target-directory: ${{ secrets.TARGET_DIRECTORY }}
+      ssh-key: ${{ secrets.SSH_KEY }}
+    with:
+      rsync-delete: true

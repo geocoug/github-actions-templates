@@ -1,0 +1,23 @@
+---
+name: Call Python Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  call-python-checks:
+
+    name: Call Python Checks
+
+    # Call from other repo
+    # uses: geocoug/github-actions-templates/.github/workflows/python-checks.yaml@main
+    # Call from local repo
+    uses: ./.github/workflows/python-checks.yml
+
+    permissions:
+      contents: read
+
+    with:
+      tests: false
