@@ -1,5 +1,5 @@
 ---
-name: Call Python Checks
+name: Python Checks
 
 on:
   push:

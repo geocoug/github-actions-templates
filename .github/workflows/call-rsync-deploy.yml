@@ -1,5 +1,5 @@
 ---
-name: Call Rsync Deploy
+name: Rsync Deploy
 
 on:
   push:
