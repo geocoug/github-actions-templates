@@ -4,9 +4,9 @@ name: Python Checks
 on:
   workflow_call:
     inputs:
-      tests:
+      pytest:
         required: false
-        description: Run Python test suite
+        description: Run Python test suite using pytest
         type: boolean
         default: false
 
@@ -14,35 +14,6 @@ permissions:
   contents: read
 
 jobs:
-
-  # Lint using pre-commit configuration
-  lint:
-    name: Lint Code Base
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
-      - uses: pre-commit/action@v3.0.0
-
-  # Check Python dependencies
-  dependencies:
-    name: Install Dependencies
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-  # Test with Pytest
   test:
     name: Test with Pytest
     runs-on: ubuntu-latest
@@ -59,8 +30,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with pre-commit
+        run: |
+          python -m pip install pre_commit
+          python -m pre_commit run --all-files
       - name: Test with pytest
-        if: inputs.tests
+        if: inputs.pytest
         run: |
           python -m pip install pytest
           python -m pytest -v tests/
