@@ -8,7 +8,6 @@ on:
 
 jobs:
   call-python-checks:
-
     name: Call Python Checks
 
     # Call from other repo
@@ -20,4 +19,4 @@ jobs:
       contents: read
 
     with:
-      tests: false
+      pytest: false
