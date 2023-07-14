@@ -21,7 +21,7 @@ jobs:
     name: Call Docker Build
 
     # Call from other repo
-    # uses: geocoug/github-actions-templates/.github/workflows/docker-build.yaml@main
+    # uses: geocoug/github-actions-templates/.github/workflows/docker-build.yml@main
     # Call from local repo
     uses: ./.github/workflows/docker-build.yml
 
