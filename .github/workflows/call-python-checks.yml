@@ -11,7 +11,7 @@ jobs:
     name: Call Python Checks
 
     # Call from other repo
-    # uses: geocoug/github-actions-templates/.github/workflows/python-checks.yaml@main
+    # uses: geocoug/github-actions-templates/.github/workflows/python-checks.yml@main
     # Call from local repo
     uses: ./.github/workflows/python-checks.yml
 

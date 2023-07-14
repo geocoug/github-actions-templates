@@ -10,11 +10,10 @@ on:
 
 jobs:
   call-rsync-deploy:
-
     name: Call Rsync Deploy
 
     # Call from other repo
-    # uses: geocoug/github-actions-templates/.github/workflows/rsync-deploy.yaml@main
+    # uses: geocoug/github-actions-templates/.github/workflows/rsync-deploy.yml@main
     # Call from local repo
     uses: ./.github/workflows/rsync-deploy.yml
 
